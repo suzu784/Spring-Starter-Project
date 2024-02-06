@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form th:action="@{/exam03/purchase}" method="post">
+  <section>
+    <label for="item1">商品1</label>
+    <input type="number" name="item1" id="item1">
+  </section>
+  <section>
+    <label for="item2">商品2</label>
+    <input type="number" name="item2" id="item2">
+  </section>
+  <section>
+    <label for="item3">商品3</label>
+    <input type="number" name="item3" id="item3">
+  </section>
+  <button>購入</button>
+  </form>
+  </body>
+</html>

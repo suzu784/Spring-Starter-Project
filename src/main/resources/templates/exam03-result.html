@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>合計金額</h1>
+    <p>◼︎税抜き価格</p>
+    <span th:text="${application.formattedPriceExcludingTax}">1</span><span>円</span>
+    <p>◼︎税込み価格</p>
+    <span th:text="${application.formattedPriceIncludingTax}">2</span><span>円</span>
+  </body>
+</html>
