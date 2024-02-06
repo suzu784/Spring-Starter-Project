@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form th:action="@{/exam05/search}">
+      <section>
+        <label for="name">名前</label>
+        <input type="text" name="name" id="name">
+      </section>
+      <button>検索</button>
+    </form>
+  </body>
+</html>
