@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>名前:<span th:text="${application.name}">テスト太郎</span></p>
+    <p>年齢:<span th:text="${application.age}">1</span></p>
+    <p>コメント:<span th:text="${application.comment}">ダミー</span></p>
+  </body>
+</html>

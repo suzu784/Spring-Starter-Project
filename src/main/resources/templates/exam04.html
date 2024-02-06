@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ユーザー登録</h1>
+    <form th:action="@{/exam04/register}" method="post" th:object="${userForm}">
+      <section>
+        <div th:errors="*{name}" style="color:red">エラー!</div>
+        <label for="name">名前</label>
+        <input type="text" name="name" id="name" th:field="*{name}" />
+      </section>
+      <section>
+        <div th:errors="*{age}" style="color:red">エラー!</div>
+        <label for="age">年齢</label>
+        <input type="number" name="age" id="age" />
+      </section>
+      <section>
+        <div th:errors="*{comment}" style="color:red">エラー!</div>
+        <label for="comment">コメント</label>
+      </section>
+      <textarea name="comment" id="comment" cols="30" rows="5"></textarea>
+      <button>登録</button>
+    </form>
+  </body>
+</html>
