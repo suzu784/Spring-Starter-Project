@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>商品一覧</h1>
+  <span th:each="item : ${application.itemList}">
+    <span th:text="${item.name}">ダミー</span>
+    <span th:text="${item.price}">ダミー</span><span>円</span>
+    <a th:href="@{/exam06/in-cart}">カートへ</a>
+    <br>
+  </span>
+  <hr>
+  <h1>ショッピングカート</h1>
+  <span th:each="item : ${session.cartItems}">
+    <span th:text="${item.name}">ダミー</span>
+    <span th:text="${item.price}">ダミー</span><span>円</span>
+    <a th:href="@{/exam06/delete}">削除</a>
+    <br>
+  </span>
+</body>
+</html>
