@@ -1,6 +1,5 @@
 package com.example.SpringStarterProject.controller;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,40 +27,43 @@ public class ShoppingCartController {
 
   @GetMapping("")
   public String index(Model model) {
-    // if (application.getAttribute("itemList") == null) {
-      List<Item> itemList = new LinkedList<>();
+    if (application.getAttribute("itemList") == null) {
+    List<Item> itemList = new LinkedList<>();
       itemList.add(new Item("手帳ノート", 1000));
       itemList.add(new Item("文房具セット", 1500));
       itemList.add(new Item("ファイル", 2000));
       application.setAttribute("itemList", itemList);
-    // }
+    }
 
-    List<Item> cartItems = new ArrayList<>();
-    session.setAttribute("cartItems", cartItems);
+    if (session.getAttribute("cartItems") == null) {
+      List<Item> cartItems = new LinkedList<>();
+      session.setAttribute("cartItems", cartItems);
+    }
+
+    List<Item> itemList = (List<Item>) application.getAttribute("itemList");
     int total = 0;
+    for (Item item : itemList) {
+      total += item.getPrice();
+    }
     model.addAttribute("total", total);
     return "item-and-cart";
   }
 
-  @GetMapping("/in-cart")
+  @GetMapping({"/in-cart", "/in-cart/"})
   public String inCart() {
-    Object itemList = application.getAttribute("itemList");
-
-    if (itemList instanceof List) {
-      List<Item> itemListAsList = (List<Item>) itemList;
-      for (int i = 0; i < itemListAsList.size(); i++) {
-        Item item = itemListAsList.get(i);
-        System.out.println(item);
-      }
-    }
-    session.setAttribute("cartItems", itemList);
-    return "item-and-cart";
+    LinkedList<Item> itemList = (LinkedList<Item>) application.getAttribute("itemList");
+    Item item = itemList.get(0); // todo...indexを送る方法について調べる
+    LinkedList<Item> cartItems = (LinkedList<Item>) session.getAttribute("cartItems");
+    cartItems.add(item);
+    session.setAttribute("cartItems", cartItems);
+    return "redirect:/exam06";
   }
 
   @GetMapping("/delete")
   public String delete() {
-    // Object cartItems = session.getAttribute("cartItems");
-    session.removeAttribute("cartItems");
-    return "item-and-cart";
+    LinkedList<Item> cartItems = (LinkedList<Item>) session.getAttribute("cartItems");
+    cartItems.remove(0);
+    session.setAttribute("cartItems", cartItems);
+    return "redirect:/exam06";
   }
 }
