@@ -7,20 +7,25 @@
 </head>
 <body>
   <h1>商品一覧</h1>
-  <span th:each="item : ${application.itemList}">
-    <span th:text="${item.name}">ダミー</span>
-    <span th:text="${item.price}">ダミー</span><span>円</span>
-    <a th:href="@{/exam06/in-cart}">カートへ</a>
-    <br>
-  </span>
+  <form th:action="@{/exam06/in-cart}" method="post">
+    <span th:each="item, status : ${application.itemList}">
+      <span th:text="${item.name}">ダミー</span>
+      <span th:text="${item.price}">ダミー</span><span>円</span>
+      <button th:name="item_index" th:value="${status.index}">カートへ</button>
+      <br>
+    </span>
+  </form>
   <hr>
   <h1>ショッピングカート</h1>
-  <span th:each="item : ${session.cartItems}">
-    <span th:text="${item.name}">ダミー</span>
-    <span th:text="${item.price}">ダミー</span><span>円</span>
-    <a th:href="@{/exam06/delete}">削除</a>
+  <form th:action="@{/exam06/delete}" method="post">
+    <span th:each="item, status : ${session.cartItems}">
+      <span th:text="${item.name}">ダミー</span>
+      <span th:text="${item.price}">ダミー</span><span>円</span>
+      <button th:name="item_index" th:value="${status.index}">削除</button>
     <br>
-  </span>
+    </span>
+  </form>
+  <p>合計金額</p>
   <span th:text="${total}"></span><span>円</span>
 </body>
 </html>
